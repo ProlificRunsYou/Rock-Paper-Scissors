@@ -25,48 +25,34 @@ int main(){
         std::cout << "TIE!";
     //If two varables are different then it continues the game. "!=" means "Not-equal-to operator"
     } else if (word!=user){
+        //else if can be replaced with a switch
         if (word=="Rock"){
-            if (user=="Scissor"){
+            if (user=="Paper"){ //check for win condition, tell user they win
+                std::cout << "Computer: " <<word << std::endl;
+                std::cout << "USER WINS!" << std::endl;
+            } else { //else tell user computer wins, no check needed as tie is handled above
                 std::cout << "Computer: " << word << std::endl;
                 std::cout << "COMPUTER WINS!" << std::endl;
-            }
-        if (word=="Rock"){
-            if (user=="Paper"){
-                std::cout << "Computer: " <<word << std::endl;
-                std::cout << "USER WINS!" << std::endl;
-                }
-            }
-        if (word=="Paper"){
-            if (user=="Scissor"){
-                std::cout << "Computer: " <<word << std::endl;
-                std::cout << "USER WINS!" << std::endl;
-                }
-            }
-        if (user=="Scissor"){
-            if (word=="Paper"){
-                std::cout << "Computer: " <<word << std::endl;
-                std::cout << "USER WINS!" << std::endl;
-                }
+            }  
         }
-        if (user=="Rock"){
-            if (word=="Scissor"){
+        else if (word=="Paper"){
+            if (user=="Scissor"){ //check for win condition, tell user they win
                 std::cout << "Computer: " <<word << std::endl;
                 std::cout << "USER WINS!" << std::endl;
-            }
-        if (user=="Rock"){
-            if (word=="Paper"){
-                std::cout << "Computer: " <<word << std::endl;
+            } else { //else tell user computer wins, no check needed as tie is handled above
+                std::cout << "Computer: " << word << std::endl;
                 std::cout << "COMPUTER WINS!" << std::endl;
-                }
-            }
-        if (user=="Paper"){
-            if (word=="Scissor"){
+            }  
+        }
+        else if (word=="Scissor"){
+            if (user=="Rock"){ //check for win condition, tell user they win
                 std::cout << "Computer: " <<word << std::endl;
+                std::cout << "USER WINS!" << std::endl;
+            } else { //else tell user computer wins, no check needed as tie is handled above
+                std::cout << "Computer: " << word << std::endl;
                 std::cout << "COMPUTER WINS!" << std::endl;
-            }
-        }
-        }
-        }
+            }  
+        }    
     }
     return 0;
 }
