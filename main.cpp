@@ -3,56 +3,41 @@ This project going to be an rock paper siccors game.
 Made by 2983u2 on Discord.
 */
 
-
 #include <iostream>
-#include <string>
-#include <cstdlib>
 #include <ctime>
+#include <set>
+#include <map>
 
+// a very bad rock paper scissors program, this could be significantly improved
+// originally meant to be just a fix but i have pretty much rewrote the entire thing
 
 int main(){
-    std::string user;
-
     srand(time(0));
-    //Using const so it can never be changed after its first creation.
-    const std::string wordList[3]{"Rock", "Paper", "Scissor"};
-    std::cout << "Rock, Paper, Scissor SHOOT!~ ";
+
+    // replace array with set and add a map of wins, simplifies the program kind of
+    std::set<std::string> wordList {"rock", "paper", "scissors"};
+    std::map<std::string, std::string> winList = {{"rock", "paper"},{"paper", "scissors"},{"scissors", "rock"}};
+    std::string word = *std::next(wordList.begin(), rand() % 3); // Randomly pick item from wordList
+    std::string user;
+    std::cout << "Rock, Paper, Scissors SHOOT!~ ";
     std::cin >> user;
-    //Selects a word from "wordList" and holds onto it.
-    std::string word = wordList[rand() % 3];
-    //If two varables are equal then it responds with "TIE!". "==" means "Comparison operator"
-    if (word==user){
-        std::cout << "TIE!";
-    //If two varables are different then it continues the game. "!=" means "Not-equal-to operator"
-    } else if (word!=user){
-        //else if can be replaced with a switch
-        if (word=="Rock"){
-            if (user=="Paper"){ //check for win condition, tell user they win
-                std::cout << "Computer: " <<word << std::endl;
-                std::cout << "USER WINS!" << std::endl;
-            } else { //else tell user computer wins, no check needed as tie is handled above
-                std::cout << "Computer: " << word << std::endl;
-                std::cout << "COMPUTER WINS!" << std::endl;
-            }  
-        }
-        else if (word=="Paper"){
-            if (user=="Scissor"){ //check for win condition, tell user they win
-                std::cout << "Computer: " <<word << std::endl;
-                std::cout << "USER WINS!" << std::endl;
-            } else { //else tell user computer wins, no check needed as tie is handled above
-                std::cout << "Computer: " << word << std::endl;
-                std::cout << "COMPUTER WINS!" << std::endl;
-            }  
-        }
-        else if (word=="Scissor"){
-            if (user=="Rock"){ //check for win condition, tell user they win
-                std::cout << "Computer: " <<word << std::endl;
-                std::cout << "USER WINS!" << std::endl;
-            } else { //else tell user computer wins, no check needed as tie is handled above
-                std::cout << "Computer: " << word << std::endl;
-                std::cout << "COMPUTER WINS!" << std::endl;
-            }  
-        }    
+    // check if what was entered is actually correct instead of continuing
+    if (wordList.count(user) == 0) {
+        std::cout << "Bad input\n";
+        return -1;
+    }
+    // If what we chose and what the user chose are equal then the game is a tie
+    std::cout << "Compter: " << word << "\n\n";
+    if (word == user) {
+        std::cout << "TIE!\n";
+        return 1;
+    }
+    // no need to add an if, else here. The above if's will guard and prevents the program from continuing
+    // also replace big nested if mess with a single one and a map
+    if (winList[word] == user) {
+        std::cout << "You win\n";
+    } else {
+        std::cout << "Compter wins\n";
     }
     return 0;
 }
